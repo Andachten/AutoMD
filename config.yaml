@@ -1,0 +1,41 @@
+task_name: MD_run
+
+global_settings:
+  gpu_lst: [0,2,4,5,6,7]
+  cpu_num: 8
+  box_pad: 1.2
+  box_type: cubic #triclinic
+  solvent: water #DMF
+  ion_conc: 0.15
+  gmx_exec: gmx
+  gmx_bonded: gpu
+  gmx_update: gpu
+
+MD_settings:
+  run: True
+  temp: 310
+  time: 5
+  times: 1
+  Annealing: False
+  Annealing_process: [[0, 10, 1000],[0, 310, 410]]
+  early_stop: False
+  early_stop_type: rmsd_max
+  early_stop_threshold: 0.5
+  early_stop_step: 20
+  Fix: False
+  group: {
+    'SOLU':'protein',
+    'SOLV':'not protein',
+    'PULL':'chainID B and resid 1',
+    'FIX':'chainID A and resid 1'}
+
+SMD_settings:
+  run: True
+  temp: 310
+  pull_distance: 5
+  pull_rotio: 0.3
+  speed: 1
+  times: 1
+  time: -1
+  type: umbrella #constant-force|umbrella
+  k: 1000
