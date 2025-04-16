@@ -14,8 +14,6 @@ import numpy as np
 import copy
 import hydra
 
-version = '0.0.1'
-
 PULL_MDP = {'define': '-DPOSRES_PULL',
             'integrator ': ' md',
             'dt': '0.002',
