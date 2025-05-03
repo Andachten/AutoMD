@@ -1,0 +1,8 @@
+biopython==1.85
+hydra-core==1.3.2
+MDAnalysis==2.8.0
+numpy==2.2.3
+omegaconf==2.3.0
+pandas==2.2.3
+PyYAML==6.0.2
+scipy==1.15.2

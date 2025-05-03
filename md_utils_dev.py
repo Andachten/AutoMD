@@ -368,7 +368,6 @@ def early_stop_rmsd(name,time,config):
     if Path(fname).is_file():
         rmsd_data = np.loadtxt(fname,comments=["#","@"])
         reach_time = rmsd_data[-1,0]/1e3+0.1 #ns
-    
     if reach_time < time:
         if Path(f"{name}.tpr").is_file() and Path(f"{name}.xtc").is_file():
             system(f"echo '1\n1\n'|gmx trjconv -s {name}.tpr -f {name}.xtc -o {name}_noPBC.xtc -n index.ndx -pbc cluster")
@@ -398,6 +397,8 @@ def early_stop_rmsd(name,time,config):
     if early_stop:
         with open(f'{name}_earlystop','w') as f:
             f.write(f"Time step: {time}; Mean:{rmsd_mean}; Max: {rmsd_max}; std: {rmsd_std}\n")
+
+
 
 
 def step1_preparation(config, fname='./protein.pdb'):
